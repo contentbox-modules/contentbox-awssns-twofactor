@@ -1,0 +1,38 @@
+{
+    "name":"contentbox-awssns-twofactor",
+    "version":"0.0.0",
+    "author":"",
+    "location":"contentbox-modules/contentbox-awssns-twofactor#v0.0.0",
+    "homepage":"https://github.com/contentbox-modules/contentbox-awssns-twofactor",
+    "documentation":"https://github.com/contentbox-modules/contentbox-awssns-twofactor",
+    "repository":{
+        "type":"git",
+        "URL":"https://github.com/contentbox-modules/contentbox-awssns-twofactor"
+    },
+    "bugs":"https://github.com/contentbox-modules/contentbox-awssns-twofactor/issues",
+    "slug":"contentbox-awssns-twofactor",
+    "shortDescription":"AWS SNS Two Factor Authentication for ContentBox",
+    "description":"AWS SNS Two Factor Authentication for ContentBox",
+    "type":"modules",
+    "dependencies":{
+        
+    },
+    "devDependencies":{
+        "coldbox":"^4.3.0+188",
+        "testbox":"^2.4.0+80"
+    },
+    "installPaths":{
+        "testbox":"testbox",
+        "coldbox":"tests\\resources\\app\\coldbox"
+    },
+    "scripts":{
+        "postVersion":"package set location='contentbox-modules/contentbox-awssns-twofactor#v`package version`'",
+        "onRelease":"publish",
+        "postPublish":"!git push && !git push --tags"
+    },
+    "ignore":[
+        "**/.*",
+        "test",
+        "tests"
+    ]
+}
