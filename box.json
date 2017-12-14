@@ -15,7 +15,7 @@
     "description":"AWS SNS Two Factor Authentication for ContentBox",
     "type":"modules",
     "dependencies":{
-        
+        "snssdk":"^0.0.3"
     },
     "devDependencies":{
         "coldbox":"^4.3.0+188",
@@ -23,7 +23,8 @@
     },
     "installPaths":{
         "testbox":"testbox",
-        "coldbox":"tests\\resources\\app\\coldbox"
+        "coldbox":"tests\\resources\\app\\coldbox",
+        "snssdk":"modules\\snssdk"
     },
     "scripts":{
         "postVersion":"package set location='contentbox-modules/contentbox-awssns-twofactor#v`package version`'",
