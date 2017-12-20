@@ -40,11 +40,18 @@ component
 	function getDisplayName(){
 		return "AWS SNS Message";
 	};
+	
+	/**
+        * Returns html to display to the user for required two-factor fields
+        */
+        function getAuthorSetupForm( required author ){
+	    return '<input type="tel" name="preference.mobilePhone" value="#author.getPreference( "mobilePhone", "" )#" required class="form-control" />';
+	}
 
 	/**
 	* Get the display help for the provider.  Used in the UI setup screens for the author
 	*/
-	function getAuthorSetupHelp(){
+	function getAuthorSetupHelp( required author ){
 		return "Make sure you have a valid phone number setup in your author details.  We will use this phone number
 			to send you verification tokens to increase your account's security.";
 	}
