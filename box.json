@@ -1,8 +1,8 @@
 {
     "name":"contentbox-awssns-twofactor",
-    "version":"0.0.2",
+    "version":"0.0.3",
     "author":"",
-    "location":"contentbox-modules/contentbox-awssns-twofactor#v0.0.2",
+    "location":"contentbox-modules/contentbox-awssns-twofactor#v0.0.3",
     "homepage":"https://github.com/contentbox-modules/contentbox-awssns-twofactor",
     "documentation":"https://github.com/contentbox-modules/contentbox-awssns-twofactor",
     "repository":{
