@@ -15,7 +15,7 @@ component {
 	this.version			= "@version.number@+@build.number@";
 	this.viewParentLookup 	= true;
 	this.layoutParentLookup = true;
-	this.dependencies 		= [ "contentbox-admin", "snssdk" ];
+	this.dependencies 		= [ "contentbox", "snssdk" ];
 
 	/**
 	* Configure
