@@ -10,10 +10,11 @@ component{
 	request.MODULE_NAME = "contentbox-awssns-twofactor";
 
 	// Application properties
-	this.name              = hash( getCurrentTemplatePath() );
-	this.sessionManagement = true;
-	this.sessionTimeout    = createTimeSpan(0,0,15,0);
-    this.setClientCookies  = true;
+	this.name              = "#request.MODULE_NAME# Tester";
+	this.sessionManagement 	= true;
+	this.sessionTimeout 	= createTimeSpan( 0, 1, 0, 0 );
+    this.setClientCookies 	= true;
+	this.setDomainCookies 	= true;
 
     /**************************************
 	LUCEE Specific Settings
@@ -36,8 +37,11 @@ component{
 	// COLDBOX APPLICATION KEY OVERRIDE
 	COLDBOX_APP_KEY 		    = "";
 
+	//applicationstop();abort;
+
     // Mappings
 	this.mappings[ "/root" ] 				= COLDBOX_APP_ROOT_PATH;
+	this.mappings[ "/coldbox" ] 			= COLDBOX_APP_ROOT_PATH & "coldbox";
 	this.mappings[ "/contentbox" ] 			= COLDBOX_APP_ROOT_PATH & "modules/contentbox";
 	this.mappings[ "/cborm" ] 	 			= this.mappings[ "/contentbox" ] & "/modules/contentbox-deps/modules/cborm";
 
@@ -55,11 +59,11 @@ component{
 	this.ormEnabled = true;
 	this.ormSettings = {
 		// ENTITY LOCATIONS, ADD MORE LOCATIONS AS YOU SEE FIT
-		cfclocation=[ "models", "modules", "modules_app" ],
+		cfclocation=[ "modules" ],
 		// THE DIALECT OF YOUR DATABASE OR LET HIBERNATE FIGURE IT OUT, UP TO YOU TO CONFIGURE
-		dialect 			= "MySQLwithInnoDB",
+		//dialect = "MySQLwithInnoDB",
 		// DO NOT REMOVE THE FOLLOWING LINE OR AUTO-UPDATES MIGHT FAIL.
-		dbcreate = "update",
+		//dbcreate = "update",
 		// FILL OUT: IF YOU WANT CHANGE SECONDARY CACHE, PLEASE UPDATE HERE
 		secondarycacheenabled = false,
 		cacheprovider		= "ehCache",
@@ -76,6 +80,8 @@ component{
 
 	// application start
 	public boolean function onApplicationStart(){
+		// Set a high timeout for any orm updates
+		setting requestTimeout="300";
 		application.cbBootstrap = new coldbox.system.Bootstrap( COLDBOX_CONFIG_FILE, COLDBOX_APP_ROOT_PATH, COLDBOX_APP_KEY, COLDBOX_APP_MAPPING );
 		application.cbBootstrap.loadColdbox();
 		return true;

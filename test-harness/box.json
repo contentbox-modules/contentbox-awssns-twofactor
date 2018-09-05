@@ -6,7 +6,8 @@
     "description":"",
     "dependencies":{
         "coldbox":"^5.0.0",
-        "contentbox":"4.1.*"
+        "contentbox":"4.1.*",
+        "snssdk":"^0.0.3"
     },
     "devDependencies":{
         "testbox":"^2.8.0"
@@ -14,7 +15,8 @@
     "installPaths":{
         "coldbox":"coldbox/",
         "testbox":"testbox/",
-        "contentbox":"modules/contentbox"
+        "contentbox":"modules/contentbox",
+        "snssdk":"modules/snssdk"
     },
     "testbox":{
         "runner":"http://localhost:60299/tests/runner.cfm"
