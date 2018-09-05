@@ -1,42 +1,14 @@
 {
+	"debuggingEnabled":true,
+	"disableInternalCFJavaComponents":false,
+	"robustExceptionEnabled":true,
 	"requestTimeoutEnabled":true,
-    "inspectTemplate":"never",
+    "inspectTemplate":"once",
     "whitespaceManagement":"white-space-pref",
 	"requestTimeout":"0,0,5,0",
     "applicationTimeout":"365,0,0,0",
-	"cacheDefaultObject":"contentbox",
-    "caches":{
-		"sessions":{
-			"storage":"true",
-			"custom":{
-				"connectTimeout":"5000",
-				"queryTimeout":"75000",
-				"bucketName":"sessions",
-				"disconnectTimeout":"25000",
-				"kvTimeout":"2500",
-				"password":"",
-				"hosts":"${COUCHBASE_HOST1}"
-			},
-			"class":"ortus.extension.cache.couchbase.CouchbaseCache",
-			"readOnly":"false"
-		},
-        "contentbox":{
-            "storage":"true",
-			"custom":{
-				"connectTimeout":"5000",
-				"queryTimeout":"75000",
-				"bucketName":"contentbox",
-				"disconnectTimeout":"25000",
-				"kvTimeout":"2500",
-				"password":"",
-				"hosts":"${COUCHBASE_HOST1}"
-			},
-			"class":"ortus.extension.cache.couchbase.CouchbaseCache",
-			"readOnly":"false"
-        }
-	},
 	"datasources" : {
-		 "ortussolutions":{
+		 "contentbox":{
 			 "host":"${DB_HOST}",
 			 "dbdriver":"MySQL",
 			 "database":"${DB_DATABASE}",
