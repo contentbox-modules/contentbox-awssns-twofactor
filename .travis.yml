@@ -64,6 +64,9 @@ script:
   - box install
   # run our matrix server
   - box server start serverConfigFile="server-${ENGINE}.json"
+  # If lucee 5 stop it due to stupid ORM bug that never gets fixed on first start.
+  - if [ ${ENGINE} = 'lucee@5' ]; then box server stop; fi
+  - if [ ${ENGINE} = 'lucee@5' ]; then box server start serverConfigFile="server-lucee@5.json"; fi
   # Startup the app
   - curl http://localhost:60299
   # Debugging of tests
