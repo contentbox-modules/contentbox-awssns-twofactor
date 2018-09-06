@@ -7,7 +7,7 @@
     "dependencies":{
         "coldbox":"^5.0.0",
         "contentbox":"4.1.*",
-        "snssdk":"^0.0.3"
+        "snssdk":"^1.0.0"
     },
     "devDependencies":{
         "testbox":"^2.8.0"

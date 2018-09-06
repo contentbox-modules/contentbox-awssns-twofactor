@@ -15,7 +15,7 @@
     "description":"AWS SNS Two Factor Authentication for ContentBox",
     "type":"contentbox-modules",
     "dependencies":{
-        "snssdk":"^0.0.3"
+        "snssdk":"^1.0.0"
     },
     "devDependencies":{
     },

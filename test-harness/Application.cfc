@@ -58,23 +58,24 @@ component{
 	// ORM SETTINGS
 	this.ormEnabled = true;
 	this.ormSettings = {
+
 		// ENTITY LOCATIONS, ADD MORE LOCATIONS AS YOU SEE FIT
-		cfclocation=[ "modules" ],
+		// IF YOUR MODULE USES ENTITIES, THEN MAKE SURE YOU ADD IT HERE
+		cfclocation=[ "modules", "modules_app" ],
+
 		// THE DIALECT OF YOUR DATABASE OR LET HIBERNATE FIGURE IT OUT, UP TO YOU TO CONFIGURE
 		//dialect = "MySQLwithInnoDB",
-		// DO NOT REMOVE THE FOLLOWING LINE OR AUTO-UPDATES MIGHT FAIL.
-		//dbcreate = "update",
-		// FILL OUT: IF YOU WANT CHANGE SECONDARY CACHE, PLEASE UPDATE HERE
-		secondarycacheenabled = false,
-		cacheprovider		= "ehCache",
+
 		// ORM SESSION MANAGEMENT SETTINGS, DO NOT CHANGE
 		logSQL 				= true,
 		flushAtRequestEnd 	= false,
 		autoManageSession	= false,
+
 		// ORM EVENTS MUST BE TURNED ON FOR CONTENTBOX TO WORK
 		eventHandling 		= true,
 		eventHandler		= "cborm.models.EventHandler",
-		// THIS IS ADDED SO OTHER CFML ENGINES CAN WORK WITH CONTENTBOX
+
+		// THIS IS ADDED SO OTHER CFML ENGINES CAN WORK WITH CONTENTBOX, USE FALSE FOR DEBUGGING
 		skipCFCWithError	= true
 	};
 
