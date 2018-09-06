@@ -50,6 +50,12 @@ before_script:
   - mysql -u root -e 'create database contentbox;'
   # import database
   - mysql -u root < test-harness/tests/resources/sql/mysql/contentbox.sql
+  # Seed .env
+  - touch test-harness/.env
+  - printf "DB_HOST=localhost\n" >> test-harness/.env
+  - printf "DB_DATABASE=contentbox\n" >> test-harness/.env
+  - printf "DB_USER=root\n" >> test-harness/.env
+  - printf "DB_PASSWORD=\n" >> test-harness/.env
 
 script:
   # Startup the harness

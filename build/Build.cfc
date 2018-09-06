@@ -34,7 +34,12 @@ component{
             }
             // Create directories
             directoryCreate( item, true, true );
-        } );
+		} );
+
+		// Create Mappings
+		fileSystemUtil.createMapping( "coldbox", variables.cwd & "test-harness/coldbox" );
+		fileSystemUtil.createMapping( "contentbox", variables.cwd & "test-harness/modules/contentbox" );
+		fileSystemUtil.createMapping( "cborm", variables.cwd & "test-harness/modules/contentbox/modules/contentbox-deps/modules/cborm" );
 
         return this;
     }
