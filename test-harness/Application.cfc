@@ -72,8 +72,16 @@ component{
 
 	/************************************** METHODS *********************************************/
 
+	function loadMappings(){
+		// LOCATION MAPPINGS
+		application.moduleRootPath 	= REReplaceNoCase( COLDBOX_APP_ROOT_PATH, "#request.MODULE_NAME#(\\|/)test-harness(\\|/)", "" );
+		application.modulePath 		= application.moduleRootPath & request.MODULE_NAME;
+		application.MODULE_NAME 	= request.MODULE_NAME;
+	}
+
 	// application start
 	public boolean function onApplicationStart(){
+		loadMappings();
 		// Set a high timeout for any orm updates
 		setting requestTimeout="300";
 		application.cbBootstrap = new coldbox.system.Bootstrap( COLDBOX_CONFIG_FILE, COLDBOX_APP_ROOT_PATH, COLDBOX_APP_KEY, COLDBOX_APP_MAPPING );
@@ -84,10 +92,7 @@ component{
 	// request start
 	public boolean function onRequestStart( string targetPage ){
 
-		// LOCATION MAPPINGS
-		application.moduleRootPath 	= REReplaceNoCase( COLDBOX_APP_ROOT_PATH, "#request.MODULE_NAME#(\\|/)test-harness(\\|/)", "" );
-		application.modulePath 		= application.moduleRootPath & request.MODULE_NAME;
-		application.MODULE_NAME 	= request.MODULE_NAME;
+		loadMappings();
 
 		// In case bootstrap or controller are missing, perform a manual restart
 		if(
