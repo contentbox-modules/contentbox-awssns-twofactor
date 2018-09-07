@@ -1,4 +1,11 @@
-﻿component extends="coldbox.system.ioc.config.Binder"{
+﻿/**
+* ContentBox - A Modular Content Platform
+* Copyright since 2012 by Ortus Solutions, Corp
+* www.ortussolutions.com/products/contentbox
+* ---
+* WireBox Configuration
+*/
+component extends="coldbox.system.ioc.config.Binder"{
 	
 	/**
 	* Configure WireBox, that's it!
@@ -36,7 +43,7 @@
 			
 			// Register all event listeners here, they are created in the specified order
 			listeners = [
-				// { class="", name="", properties={} }
+				{ class="coldbox.system.aop.Mixer" }
 			]			
 		};
 		

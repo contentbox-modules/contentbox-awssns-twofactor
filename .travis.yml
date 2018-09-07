@@ -51,6 +51,7 @@ before_script:
   # import database
   - mysql -u root < test-harness/tests/resources/sql/mysql/contentbox.sql
   # Seed .env
+  - echo "Seeding database .env file at /test-harness/.env"
   - touch test-harness/.env
   - printf "DB_HOST=localhost\n" >> test-harness/.env
   - printf "DB_DATABASE=contentbox\n" >> test-harness/.env
@@ -65,9 +66,10 @@ script:
   # run our matrix server
   - box server start serverConfigFile="server-${ENGINE}.json"
   # If lucee 5 stop it due to stupid ORM bug that never gets fixed on first start.
+  - echo "Checking if lucee5 so we can do a restart due to a stupid  ORM startup bug."
   - if [ ${ENGINE} = 'lucee@5' ]; then box server stop; fi
   - if [ ${ENGINE} = 'lucee@5' ]; then box server start serverConfigFile="server-lucee@5.json"; fi
-  # Startup the app
+  # Startup the app, more for debugging than anything.
   - curl http://localhost:60299
   # Debugging of tests
   #- curl http://localhost:60299/tests/runner.cfm?reporter=json -o testresults.json && cat testresults.json

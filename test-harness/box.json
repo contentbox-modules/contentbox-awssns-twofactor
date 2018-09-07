@@ -1,5 +1,5 @@
 {
-    "name":"Tester",
+    "name":"ContentBox Tester",
     "version":"0.0.0",
     "slug":"tester",
     "private":true,
@@ -7,15 +7,15 @@
     "dependencies":{
         "coldbox":"^5.0.0",
         "contentbox":"4.1.*",
-        "snssdk":"^1.0.0"
+        "snssdk":"^1.0.0+11"
     },
     "devDependencies":{
         "testbox":"^2.8.0"
     },
     "installPaths":{
         "coldbox":"coldbox/",
-        "testbox":"testbox/",
-        "contentbox":"modules/contentbox",
+        "testbox":"testbox",
+        "contentbox":"modules/contentbox/",
         "snssdk":"modules/snssdk"
     },
     "testbox":{

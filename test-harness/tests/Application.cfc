@@ -6,8 +6,11 @@ www.ortussolutions.com
 */
 component{
 
+	// UPDATE THE NAME OF THE MODULE IN TESTING BELOW
+	request.MODULE_NAME = "contentbox-awssns-twofactor";
+
 	// APPLICATION CFC PROPERTIES
-	this.name 				= "ColdBoxTestingSuite" & hash(getCurrentTemplatePath());
+	this.name 				= "ContentBox Testing Suite";
 	this.sessionManagement 	= true;
 	this.sessionTimeout 	= createTimeSpan( 0, 0, 15, 0 );
 	this.applicationTimeout = createTimeSpan( 0, 0, 15, 0 );
@@ -18,23 +21,19 @@ component{
 
 	// The application root
 	rootPath = REReplaceNoCase( this.mappings[ "/tests" ], "tests(\\|/)", "" );
+
 	this.mappings[ "/root" ]   		= rootPath;
+	this.mappings[ "/cbapp" ]   	= rootPath;
 	this.mappings[ "/coldbox" ] 	= rootPath & "coldbox" ;
+	this.mappings[ "/testbox" ] 	= rootPath & "testbox" ;
 	this.mappings[ "/contentbox" ] 	= rootPath & "modules/contentbox";
 	this.mappings[ "/cborm" ] 	 	= this.mappings[ "/contentbox" ] & "/modules/contentbox-deps/modules/cborm";
 
-	// UPDATE THE NAME OF THE MODULE IN TESTING BELOW
-	request.MODULE_NAME = "contentbox-awssns-twofactor";
-
-	// The module root path
-	moduleRootPath = REReplaceNoCase( this.mappings[ "/root" ], "#request.module_name#(\\|/)test-harness(\\|/)", "" );
-	this.mappings[ "/moduleroot" ] = moduleRootPath;
-	this.mappings[ "/#request.MODULE_NAME#" ] = moduleRootPath & "#request.MODULE_NAME#";
 
 	this.ormEnabled = true;
 	this.datasource = "contentbox";
 	this.ormSettings = {
-		cfclocation			= [ rootPath & "/modules" ],
+		cfclocation			= [ rootPath & "/modules", rootPath & "/modules_app" ],
 		logSQL 				= true,
 		flushAtRequestEnd 	= false,
 		autoManageSession	= false,
@@ -43,5 +42,31 @@ component{
 		skipCFCWithError	= true,
 		secondarycacheenabled = false
 	};
+
+	public boolean function onRequestStart(String targetPage){
+
+		// LOCATION MAPPINGS
+		application.moduleRootPath 	= REReplaceNoCase( rootPath, "#request.MODULE_NAME#(\\|/)test-harness(\\|/)", "" );
+		application.modulePath 		= application.moduleRootPath & request.MODULE_NAME;
+		application.MODULE_NAME 	= request.MODULE_NAME;
+
+		// Set a high timeout for long running tests
+		setting requestTimeout="9999";
+
+		// ORM Reload for fresh results
+		if( structKeyExists( url, "fwreinit" ) ){
+			if( structKeyExists( server, "lucee" ) ){
+				pagePoolClear();
+			}
+			ormReload();
+		}
+
+		return true;
+	}
+
+	public void function onRequestEnd() {
+        structDelete( application, "cbController" );
+        structDelete( application, "wirebox" );
+	}
 
 }
